@@ -7,7 +7,7 @@ function filterDestinations() {
     const typeValue = type.value.toLowerCase();
     const continentValue = continent.value.toLowerCase();
     
-    let visibleCount = 0;
+    let letCount = 0;
     
     document.querySelectorAll('.destination-card').forEach(card => {
         const naam = card.querySelector('h2').textContent.toLowerCase();
@@ -15,30 +15,31 @@ function filterDestinations() {
         const cardType = card.querySelector('.vakantietype').textContent.toLowerCase();
         const cardContinent = card.querySelector('.continent').textContent.toLowerCase();
 
-        const matches = (naam.includes(searchTerm) || cardrdContinent.includes(searchTerm) || land.includes(searchTerm)) &&
+        const matches = (naam.includes(searchTerm) || land.includes(searchTerm) || cardContinent.includes(searchTerm)) &&
                         (!typeValue || cardType.includes(typeValue)) &&
                         (!continentValue || cardContinent.includes(continentValue));
 
         card.style.display = matches ? 'block' : 'none';
         if (matches) {
-            visibleCount++;
+            letCount++;
         }
     });
     
-    let noResults = document.querySelector('.no-results');
-    if (visibleCount === 0) {
-        if (!noResults) {
-            noResults = document.createElement('div');
-            noResults.className = 'no-results';
-            noResults.textContent = 'Geen bestemmingen gevonden. Probeer andere filters.';
-            document.querySelector('.destinations').appendChild(noResults);
-        }
-        noResults.style.display = 'block';
-    } else if (noResults) {
-        noResults.style.display = 'none';
+    let geenResulaat = document.querySelector('.no-results');
+    
+    if (!geenResulaat && letCount === 0) {
+        geenResulaat = document.createElement('div');
+        geenResulaat.className = 'no-results';
+        geenResulaat.textContent = 'Geen bestemmingen gevonden. Probeer andere filters.';
+        document.querySelector('.destinations').appendChild(geenResulaat);
+    }
+    
+    if (geenResulaat) {
+        geenResulaat.style.display = letCount === 0 ? 'block' : 'none';
     }
 }
 
-[zoekInput, type, continent, document.getElementById('zoekButton')].forEach(element => 
-    element.addEventListener(element === zoekInput ? 'input' : 'change', filterDestinations)
-);
+zoekInput.addEventListener('input', filterDestinations);
+type.addEventListener('change', filterDestinations);
+continent.addEventListener('change', filterDestinations);
+document.getElementById('zoekButton').addEventListener('click', filterDestinations);
