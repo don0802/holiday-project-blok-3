@@ -25,11 +25,10 @@
                 <select name="continent" id="continent">
                     <option value="">Selecteer continent</option>
                     <option value="europa">Europa</option>
-                    <option value="azie">Azië</option>
+                    <option value="azië">Azië</option>
                     <option value="afrika">Afrika</option>
-                    <option value="noord-amerika">Noord-Amerika</option>
-                    <option value="zuid-amerika">Zuid-Amerika</option>
-                    <option value="oceanie">Oceanië</option>
+                    <option value="amerika">Amerika</option>
+                    <option value="oceanië">Oceanië</option>
                 </select>
             </div>
 
@@ -37,16 +36,17 @@
                 <label for="type">Type vakantie:</label>
                 <select name="type" id="type">
                     <option value="">Selecteer type</option>
-                    <option value="zon">Zonvakantie</option>
-                    <option value="stedentrip">Stedentrip</option>
+                    <option value="strand">Strand</option>
+                    <option value="stad">Stad</option>
                     <option value="natuur">Natuur</option>
                     <option value="cultuur">Cultuur</option>
+                    <option value="rond">Rondreis</option>
                 </select>
             </div>
 
             <div class="filter-groep">
                 <label for="zoek">Zoeken:</label>
-                <input id="zoek" type="text" placeholder="Bijv. Spanje, Barcelona...">
+                <input id="zoekInput" type="text" placeholder="Bijv. Spanje, Barcelona...">
             </div>
         </section>
 
@@ -62,6 +62,7 @@
                         <p><?php echo $destination['beschrijving']; ?></p>
                         <div class="meta">
                             <span class="continent"><?php echo $destination['continent']; ?></span>
+                            <span class="land"><?php echo $destination['land']; ?></span>
                             <span class="vakantietype"><?php echo $destination['vakantietype']; ?></span>
                             <span class="prijs">€<?php echo $destination['prijs']; ?></span>
                         </div>

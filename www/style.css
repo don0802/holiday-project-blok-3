@@ -36,8 +36,8 @@ main {
 .filters {
   background: white;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -50,32 +50,52 @@ main {
 }
 
 .filter-groep label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #555;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 0.95em;
 }
 
 .filter-groep select,
 .filter-groep input {
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 4px;
+  padding: 12px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
   font-size: 1em;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: #333;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+.filter-groep select {
+  cursor: pointer;
+}
+
+.filter-groep select:hover,
+.filter-groep input:hover {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.05);
 }
 
 .filter-groep select:focus,
 .filter-groep input:focus {
   outline: none;
   border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
 }
 
 .search-button {
-  background-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 10px 30px;
+  padding: 12px 32px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1em;
   font-weight: 600;
   cursor: pointer;
@@ -95,67 +115,113 @@ main {
 
 .destination-card {
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .destination-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.2);
 }
 
 .destination-card img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
 }
 
 .destination-card-content {
-  padding: 20px;
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .destination-card h2 {
   color: #667eea;
   margin-bottom: 12px;
-  font-size: 1.5em;
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-top: 0;
 }
 
 .destination-card p {
-  margin-bottom: 8px;
-  line-height: 1.6;
+  margin-bottom: 16px;
+  line-height: 1.7;
   color: #666;
+  font-size: 0.95em;
+  flex: 1;
 }
 
 .destination-card .meta {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-  font-size: 0.9em;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 2px solid #f5f5f5;
+  font-size: 0.85em;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .destination-card .continent {
   background: #f0f0f0;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
   color: #555;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.destination-card .land {
+  background: #ffeaa7;
+  color: #d63031;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85em;
+  border: 1px solid #fdcb6e;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 1.1em;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 2px dashed #ddd;
 }
 
 .destination-card .vakantietype {
-  background: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85em;
 }
 
 .destination-card .prijs {
-  color: #764ba2;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-weight: 700;
   font-size: 1.1em;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-left: auto;
 }
