@@ -20,7 +20,7 @@
 
     <main>
         <section class="filters">
-            <div class="filter-group">
+            <div class="filter-groep">
                 <label for="continent">Continent:</label>
                 <select name="continent" id="continent">
                     <option value="">Selecteer continent</option>
@@ -33,7 +33,7 @@
                 </select>
             </div>
 
-            <div class="filter-group">
+            <div class="filter-groep">
                 <label for="type">Type vakantie:</label>
                 <select name="type" id="type">
                     <option value="">Selecteer type</option>
@@ -44,7 +44,7 @@
                 </select>
             </div>
 
-            <div class="filter-group">
+            <div class="filter-groep">
                 <label for="zoek">Zoeken:</label>
                 <input id="zoek" type="text" placeholder="Bijv. Spanje, Barcelona...">
             </div>

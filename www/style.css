@@ -44,19 +44,19 @@ main {
   gap: 20px;
 }
 
-.filter-group {
+.filter-groep {
   display: flex;
   flex-direction: column;
 }
 
-.filter-group label {
+.filter-groep label {
   font-weight: 600;
   margin-bottom: 8px;
   color: #555;
 }
 
-.filter-group select,
-.filter-group input {
+.filter-groep select,
+.filter-groep input {
   padding: 10px;
   border: 2px solid #ddd;
   border-radius: 4px;
@@ -64,8 +64,8 @@ main {
   transition: border-color 0.3s ease;
 }
 
-.filter-group select:focus,
-.filter-group input:focus {
+.filter-groep select:focus,
+.filter-groep input:focus {
   outline: none;
   border-color: #667eea;
 }
@@ -158,18 +158,4 @@ main {
   color: #764ba2;
   font-weight: 700;
   font-size: 1.1em;
-}
-
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 1.8em;
-  }
-
-  .filters {
-    grid-template-columns: 1fr;
-  }
-
-  .search-button {
-    align-self: stretch;
-  }
 }
