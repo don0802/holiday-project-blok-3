@@ -1,3 +1,5 @@
+<?php include 'database.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +44,15 @@
                 <input id="zoek" type="text" placeholder="Bijv. Spanje, Duitsland, Bangkok..."><br>
                 <button type="button" id="zoekButton">Zoek</button>
             </div>
+        </section>
+
+        <section>
+            <article>
+                <?php foreach ($destinations as $destination): ?>
+                    <h2><?php echo $destination['naam']; ?></h2>
+                    <p><?php echo $destination['beschrijving']; ?></p>
+                <?php endforeach; ?>
+            </article>
         </section>
     </main>
 </body>
