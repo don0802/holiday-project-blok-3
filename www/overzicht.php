@@ -1,21 +1,26 @@
 <?php include 'database.php'; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Overzicht</title>
 </head>
+
 <body>
     <header>
-        <h1>Overzicht</h1>
-        <p>Welkom op de overzichtspagina!</p>
+        <nav>
+            <h1>Vakantiebestemmingen</h1>
+            <p>Ontdek de mooiste vakantieplekken ter wereld</p>
+        </nav>
     </header>
 
     <main>
-        <section>
-            <div>
+        <section class="filters">
+            <div class="filter-group">
                 <label for="continent">Continent:</label>
                 <select name="continent" id="continent">
                     <option value="">Selecteer continent</option>
@@ -28,7 +33,7 @@
                 </select>
             </div>
 
-            <div>
+            <div class="filter-group">
                 <label for="type">Type vakantie:</label>
                 <select name="type" id="type">
                     <option value="">Selecteer type</option>
@@ -39,21 +44,33 @@
                 </select>
             </div>
 
-            <div>
-                <label for="zoek">Zoek:</label>
-                <input id="zoek" type="text" placeholder="Bijv. Spanje, Duitsland, Bangkok..."><br>
-                <button type="button" id="zoekButton">Zoek</button>
+            <div class="filter-group">
+                <label for="zoek">Zoeken:</label>
+                <input id="zoek" type="text" placeholder="Bijv. Spanje, Barcelona...">
             </div>
         </section>
 
-        <section>
-            <article>
-                <?php foreach ($destinations as $destination): ?>
-                    <h2><?php echo $destination['naam']; ?></h2>
-                    <p><?php echo $destination['beschrijving']; ?></p>
-                <?php endforeach; ?>
-            </article>
+        <button class="search-button" id="zoekButton">Zoeken</button><br><br>
+
+        <section class="destinations">
+            <?php foreach ($destinations as $destination): ?>
+                <article class="destination-card">
+                    <img src="https://picsum.photos/seed/<?php echo $destination['thumbnail_name']; ?>/300/200"
+                        alt="afbeelding van <?php echo $destination['naam']; ?>">
+                    <div class="destination-card-content">
+                        <h2><?php echo $destination['naam']; ?></h2>
+                        <p><?php echo $destination['beschrijving']; ?></p>
+                        <div class="meta">
+                            <span class="continent"><?php echo $destination['continent']; ?></span>
+                            <span class="vakantietype"><?php echo $destination['vakantietype']; ?></span>
+                            <span class="prijs">€<?php echo $destination['prijs']; ?></span>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </section>
     </main>
+    <script src="main.js"></script>
 </body>
+
 </html>
