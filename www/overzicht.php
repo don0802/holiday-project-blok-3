@@ -1,77 +1,88 @@
-<?php include 'database.php'; ?>
+<?php
+include 'database.php';
+
+$query = "SELECT * FROM destinations";
+$result = mysqli_query($conn, $query);
+?>
 
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Overzicht</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
-        <nav>
-            <h1>Vakantiebestemmingen</h1>
-            <p>Ontdek de mooiste vakantieplekken ter wereld</p>
-        </nav>
-    </header>
 
-    <main>
-        <section class="filters">
-            <div class="filter-groep">
-                <label for="continent">Continent:</label>
-                <select name="continent" id="continent">
-                    <option value="">Selecteer continent</option>
-                    <option value="europa">Europa</option>
-                    <option value="azië">Azië</option>
-                    <option value="afrika">Afrika</option>
-                    <option value="amerika">Amerika</option>
-                    <option value="oceanië">Oceanië</option>
-                </select>
-            </div>
+<header>
+    <h1>Vakantiebestemmingen</h1>
+    <p>Ontdek de mooiste vakantieplekken ter wereld</p>
+</header>
 
-            <div class="filter-groep">
-                <label for="type">Type vakantie:</label>
-                <select name="type" id="type">
-                    <option value="">Selecteer type</option>
-                    <option value="strand">Strand</option>
-                    <option value="stad">Stad</option>
-                    <option value="natuur">Natuur</option>
-                    <option value="cultuur">Cultuur</option>
-                    <option value="rond">Rondreis</option>
-                </select>
-            </div>
+<main>
+    <div class="filters">
+        <div class="filter-groep">
+            <label>Continent:</label>
+            <select id="continent">
+                <option value="">Alle continenten</option>
+                <option value="europa">Europa</option>
+                <option value="azie">Azië</option>
+                <option value="afrika">Afrika</option>
+                <option value="amerika">Amerika</option>
+                <option value="oceanie">Oceanië</option>
+            </select>
+        </div>
 
-            <div class="filter-groep">
-                <label for="zoek">Zoeken:</label>
-                <input id="zoekInput" type="text" placeholder="Bijv. Spanje, Barcelona...">
-            </div>
-        </section>
+        <div class="filter-groep">
+            <label>Type vakantie:</label>
+            <select id="type">
+                <option value="">Alle types</option>
+                <option value="strand">Strand</option>
+                <option value="stad">Stad</option>
+                <option value="natuur">Natuur</option>
+                <option value="cultuur">Cultuur</option>
+                <option value="rondreis">Rondreis</option>
+            </select>
+        </div>
 
-        <button class="search-button" id="zoekButton">Zoeken</button><br><br>
+        <div class="filter-groep">
+            <label>Zoeken:</label>
+            <input type="text" id="zoekInput" placeholder="Zoek bestemming...">
+        </div>
 
-        <section class="destinations">
-            <?php foreach ($destinations as $destination): ?>
-                <article class="destination-card">
-                    <img src="https://picsum.photos/seed/<?php echo $destination['thumbnail_name']; ?>/300/200"
-                        alt="afbeelding van <?php echo $destination['naam']; ?>">
+        <div class="filter-groep">
+            <label>Sorteren:</label>
+            <select id="sort">
+                <option value="">Geen sortering</option>
+                <option value="laag">Prijs laag naar hoog</option>
+                <option value="hoog">Prijs hoog naar laag</option>
+            </select>
+        </div>
+    </div>
+
+    <button id="zoekButton" style="display: none;">Zoeken</button>
+
+    <div class="destinations">
+        <?php while ($bestemming = mysqli_fetch_assoc($result)) { ?>
+            <a class="id" href="detailpagina.php?id=<?php echo $bestemming['id']; ?>">
+                <div class="destination-card">
+                    <img src="https://picsum.photos/seed/<?php echo $bestemming['thumbnail_name']; ?>/300/200">
                     <div class="destination-card-content">
-                        <h2><?php echo $destination['naam']; ?></h2>
-                        <p><?php echo $destination['beschrijving']; ?></p>
+                        <h2><?php echo $bestemming['naam']; ?></h2>
+                        <p><?php echo $bestemming['beschrijving']; ?></p>
                         <div class="meta">
-                            <span class="continent"><?php echo $destination['continent']; ?></span>
-                            <span class="land"><?php echo $destination['land']; ?></span>
-                            <span class="vakantietype"><?php echo $destination['vakantietype']; ?></span>
-                            <span class="prijs">€<?php echo $destination['prijs']; ?></span>
+                            <span class="continent"><?php echo $bestemming['continent']; ?></span>
+                            <span class="land"><?php echo $bestemming['land']; ?></span>
+                            <span class="vakantietype"><?php echo $bestemming['vakantietype']; ?></span>
+                            <span class="prijs">€<?php echo $bestemming['prijs']; ?></span>
                         </div>
                     </div>
-                </article>
-            <?php endforeach; ?>
-        </section>
-    </main>
-    <script src="main.js"></script>
-</body>
+                </div>
+            </a>
+        <?php } ?>
+    </div>
+</main>
 
+<script src="main.js"></script>
+</body>
 </html>

@@ -1,21 +1,13 @@
 <?php
-$dbhost = 'mariadb';
-$dbname = 'holiday_db';
-$dbuser = 'user';
-$dbpass = 'password';
+$host = 'mariadb';
+$database = 'holiday_db';
+$gebruiker = 'user';
+$wachtwoord = 'password';
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+$conn = mysqli_connect($host, $gebruiker, $wachtwoord, $database);
 
 mysqli_set_charset($conn, "utf8mb4");
-?>
 
-<?php
-$query = "SELECT * FROM destinations";
-$result = mysqli_query($conn, $query);
-$destinations = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-?>
+if (!$conn) {
+    die("Verbinding mislukt: " . mysqli_connect_error());
+}
